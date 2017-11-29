@@ -23,6 +23,9 @@ export default (state = expenseReducerDefault, action)  => {
         case 'REMOVE_EXPENSE':
             return state.filter((expense) => expense.id !== action.id);
 
+        case 'SET_EXPENSE':
+            return action.expenses;
+
         default:
             return state;
     }
