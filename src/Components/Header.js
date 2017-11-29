@@ -7,8 +7,8 @@ export default class Header extends React.Component{
             <header>
                 <h1>TrackExpense</h1>
                 <ul>
-                    <li><NavLink activeStyle={{color: 'red',fontweight: 'bold'}} to="/" exact={true}>DashBoard</NavLink></li>
-                    <li><NavLink activeStyle={{color: 'red',fontweight: 'bold'}} to="/addexpense">Add Expense</NavLink></li>
+                    <li><NavLink activeStyle={{color: 'red',fontweight: 'bold'}} to={process.env.PUBLIC_URL + '/'} exact={true}>DashBoard</NavLink></li>
+                    <li><NavLink activeStyle={{color: 'red',fontweight: 'bold'}} to={process.env.PUBLIC_URL + '/addexpense'}>Add Expense</NavLink></li>
                 </ul>
             </header>
         );

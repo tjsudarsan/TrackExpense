@@ -13,9 +13,9 @@ export default class Home extends React.Component{
                 <div>
                     <Header />
                         <Switch>
-                            <Route path="/" component={Dashboard} exact={true} />
-                            <Route path="/addexpense" component={AddExpense} />
-                            <Route path="/editexpense/:id" component={EditExpense} />
+                            <Route path={process.env.PUBLIC_URL + '/'} component={Dashboard} exact={true} />
+                            <Route path={process.env.PUBLIC_URL + '/addexpense'} component={AddExpense} />
+                            <Route path={process.env.PUBLIC_URL + '/editexpense/:id'} component={EditExpense} />
                             <Route component={NotFound} />
                         </Switch>
                 </div>

@@ -4,7 +4,7 @@ import ExpenseFrom from './ExpenseForm';
 import { editExpense } from '../actions/expenses';
 
 const EditExpense = (props) => {
-    console.log(props);
+    const pathurl = process.env.PUBLIC_URL + '/';
     return (
       <div>
         <h1>Edit Expense</h1>
@@ -13,7 +13,7 @@ const EditExpense = (props) => {
           expense={props.expense}
           onSubmit={(updates) => {
             props.dispatch(editExpense(props.match.params.id, updates));
-            props.history.push('/');
+            props.history.push(pathurl);
           }}
         />
       </div>
