@@ -7,6 +7,7 @@ import EditExpense from '../Components/EditExpense';
 import NotFound from '../Components/NotFound';
 import LoginPage from '../Components/LoginPage';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 export const history = createHistory();
 
@@ -14,7 +15,7 @@ const Home = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <Route path={process.env.PUBLIC_URL + '/'} component={LoginPage} exact={true} />   
+                <PublicRoute path={process.env.PUBLIC_URL + '/'} component={LoginPage} exact={true} />   
                 <PrivateRoute path={process.env.PUBLIC_URL + '/dashboard'} component={Dashboard} />
                 <PrivateRoute path={process.env.PUBLIC_URL + '/addexpense'} component={AddExpense} />
                 <PrivateRoute path={process.env.PUBLIC_URL + '/editexpense/:id'} component={EditExpense} />
