@@ -5,7 +5,7 @@ import {startAddExpense} from '../actions/expenses';
 
 class AddExpense extends Component {
   render() {
-    const pathurl = process.env.PUBLIC_URL + '/';
+    const pathurl = process.env.PUBLIC_URL + '/dashboard';
     return (
       <div>
         <h1>Add Expense</h1>

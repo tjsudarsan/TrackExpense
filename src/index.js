@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './router/AppRouter';
+import AppRouter ,{history} from './router/AppRouter';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import storeConfig from './store/storeConfig';
 import {startSetExpense,editExpense,addExpense,removeExpense} from './actions/expenses';
-import './firebase/firebase';
+import {firebase} from './firebase/firebase';
 import database from './firebase/firebase';
+import {login,logout} from './actions/auth';
 
 const store = storeConfig();
 
@@ -33,8 +34,29 @@ database.ref('expenses').on('child_removed',(snapshot)=>{
 
 ReactDOM.render(<p>Loading....</p>, document.getElementById('root'));
 
-store.dispatch(startSetExpense()).then(()=>{
-    ReactDOM.render(root,document.getElementById("root"));
+let hasRendered = false;
+const renderApp = () => {
+    if(!hasRendered){
+        ReactDOM.render(root,document.getElementById("root"));
+        hasRendered = true;
+    }
+}
+
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        store.dispatch(login(user.uid));
+        store.dispatch(startSetExpense()).then(()=>{
+            renderApp();
+            if(history.location.pathname === (process.env.PUBLIC_URL + '/')){
+                history.push(process.env.PUBLIC_URL + '/dashboard');
+            }  
+        });
+    }
+    else{
+        store.dispatch(logout());
+        renderApp();
+        history.push(process.env.PUBLIC_URL + '/');
+    }
 });
 
 

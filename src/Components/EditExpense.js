@@ -4,7 +4,7 @@ import ExpenseFrom from './ExpenseForm';
 import { startUpdateExpense } from '../actions/expenses';
 
 const EditExpense = (props) => {
-    const pathurl = process.env.PUBLIC_URL + '/';
+    const pathurl = process.env.PUBLIC_URL + '/dashboard';
     return (
       <div>
         <h1>Edit Expense</h1>
