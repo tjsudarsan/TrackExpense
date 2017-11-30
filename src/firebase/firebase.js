@@ -17,5 +17,6 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // database.ref('expenses').on('child_changed',(snapshot)=>{
 //   console.log(snapshot.key,snapshot.val());
 // });
+//
 
 export {firebase , googleAuthProvider, database as default};

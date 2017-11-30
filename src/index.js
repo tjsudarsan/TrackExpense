@@ -17,21 +17,6 @@ const root = (
     </Provider>
 );
 
-database.ref('expenses').on('child_changed',(snapshot)=>{
-    store.dispatch(editExpense(snapshot.key.toString(),snapshot.val()));
-});
-
-database.ref('expenses').on('child_added',(snapshot)=>{
-    store.dispatch(addExpense({
-        id: snapshot.key,
-        ...snapshot.val()
-    }));
-});
-
-database.ref('expenses').on('child_removed',(snapshot)=>{
-    store.dispatch(removeExpense(snapshot.key.toString(),snapshot.val()));
-});
-
 ReactDOM.render(<p>Loading....</p>, document.getElementById('root'));
 
 let hasRendered = false;
@@ -50,6 +35,22 @@ firebase.auth().onAuthStateChanged((user)=>{
             if(history.location.pathname === (process.env.PUBLIC_URL + '/')){
                 history.push(process.env.PUBLIC_URL + '/dashboard');
             }  
+        });
+        
+        const uid = user.uid;        
+        database.ref(`users/${uid}/expenses`).on('child_changed',(snapshot)=>{
+            store.dispatch(editExpense(snapshot.key.toString(),snapshot.val()));
+        });
+        
+        database.ref(`users/${uid}/expenses`).on('child_added',(snapshot)=>{
+            store.dispatch(addExpense({
+                id: snapshot.key,
+                ...snapshot.val()
+            }));
+        });
+        
+        database.ref(`users/${uid}/expenses`).on('child_removed',(snapshot)=>{
+            store.dispatch(removeExpense(snapshot.key.toString(),snapshot.val()));
         });
     }
     else{
