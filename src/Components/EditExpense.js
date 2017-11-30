@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseFrom from './ExpenseForm';
-import { editExpense } from '../actions/expenses';
+import { startUpdateExpense } from '../actions/expenses';
 
 const EditExpense = (props) => {
     const pathurl = process.env.PUBLIC_URL + '/';
@@ -12,7 +12,7 @@ const EditExpense = (props) => {
         <ExpenseFrom
           expense={props.expense}
           onSubmit={(updates) => {
-            props.dispatch(editExpense(props.match.params.id, updates));
+            props.dispatch(startUpdateExpense(props.match.params.id, updates));
             props.history.push(pathurl);
           }}
         />
