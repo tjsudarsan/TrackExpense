@@ -1,0 +1,11 @@
+.addexpenseroot h1{
+    text-align: center;
+    margin-top: 20px;
+    color: purple;
+}
+
+@media(max-width: 480px){
+    .addexpenseroot h1{
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,13 @@
+.loadingpage{
+    text-align: center;
+    margin-top: 10%;
+}
+
+@media(max-width: 480px){
+    .loadingpage h1{
+        font-size: 25px;
+    }
+    .loadingpage{
+        margin-top: 50%;
+    }
+}

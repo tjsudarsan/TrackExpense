@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter ,{history} from './router/AppRouter';
 import registerServiceWorker from './registerServiceWorker';
+import LoadingPage from './Components/LoadingPage';
 import { Provider } from 'react-redux';
 import storeConfig from './store/storeConfig';
 import {startSetExpense,editExpense,addExpense,removeExpense} from './actions/expenses';
@@ -17,7 +18,7 @@ const root = (
     </Provider>
 );
 
-ReactDOM.render(<p>Loading....</p>, document.getElementById('root'));
+ReactDOM.render(<LoadingPage />, document.getElementById('root'));
 
 let hasRendered = false;
 const renderApp = () => {
@@ -29,7 +30,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
-        store.dispatch(login(user.uid));
+        store.dispatch(login(user.uid,user.displayName));
         store.dispatch(startSetExpense()).then(()=>{
             renderApp();
             if(history.location.pathname === (process.env.PUBLIC_URL + '/')){

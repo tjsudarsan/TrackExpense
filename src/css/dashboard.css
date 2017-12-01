@@ -1,0 +1,48 @@
+.exp{
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+}
+
+.summary h3{
+    text-align: center;
+    padding: 0px;
+}
+
+.filtertext{
+    padding: 3px;
+    margin: 0px;
+    color: green;
+    font-weight: 800;
+}
+
+.filteritems{
+    margin-bottom: 5px;
+}
+
+#range{
+    text-align: center;
+}
+
+.itemslist{
+    margin-top: 10px;
+}
+
+.items{
+    text-decoration: none !important;
+    color: black;
+    text-transform: capitalize;
+}
+
+.items li:hover{
+    color: black;
+    background-color: rgba(0, 0, 0,0.03);
+}
+
+@media(max-width: 480px){
+    .summary h3{
+        font-size: 15px;
+    }
+
+    
+}

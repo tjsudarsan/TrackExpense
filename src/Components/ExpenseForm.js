@@ -3,6 +3,7 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import {SingleDatePicker} from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import '../css/expenseform.css';
 
 export default class ExpenseForm extends React.Component{
     constructor(props){
@@ -56,44 +57,58 @@ export default class ExpenseForm extends React.Component{
     }
     render(props){
         return(
-            <form onSubmit={this.handleSubmit}>
-                
-                {this.state.error ? <p>{this.state.error}</p> : <p></p> }
+            <div className="row expform">
+                <div className="col-md-12">
+                    <form onSubmit={this.handleSubmit}>
+                        {this.state.error ? <p>{this.state.error}</p> : <p></p> }
+                        <div class="form-inline">
+                            <h4>Date: </h4>  
+                            <SingleDatePicker
+                                date={this.state.date}
+                                onDateChange={date => this.setState({date})}
+                                focused={this.state.focused}
+                                onFocusChange={({focused}) => this.setState({focused})}
+                                numberOfMonths={1}
+                                isOutsideRange={() => false}
+                            />
+                        </div>
+                            
+                        <input
+                            className="form-control textfield"
+                            type="text"
+                            value={this.state.description}
+                            placeholder="Description"
+                            onChange={this.handleChangeDescription}
+                        />
 
-                <SingleDatePicker
-                date={this.state.date}
-                onDateChange={date => this.setState({date})}
-                focused={this.state.focused}
-                onFocusChange={({focused}) => this.setState({focused})}
-                numberOfMonths={1}
-                isOutsideRange={() => false}
-                />
-                    
-                <input
-                    type="text"
-                    value={this.state.description}
-                    placeholder="Description"
-                    onChange={this.handleChangeDescription}
-                />
+                        <div className="input-group">
+                            <span className="input-group-addon">₹</span>
+                            <input
+                                className="form-control textfield"
+                                type="text"
+                                value={this.state.amount}
+                                placeholder="Amount"
+                                onChange={this.handleChangeAmount}
+                            />
+                        </div>
 
-                <input
-                    type="text"
-                    value={this.state.amount}
-                    placeholder="Amount"
-                    onChange={this.handleChangeAmount}
-                />
+                        <textarea
+                            className="form-control textfield"
+                            placeholder="Enter Note or Additional Information or Remarks"
+                            value={this.state.note}
+                            onChange={this.handleChangeNote}
+                        ></textarea>
 
-                <textarea
-                    placeholder="Enter note"
-                    value={this.state.note}
-                    onChange={this.handleChangeNote}
-                ></textarea>
-
-                <button
-                    type="button"
-                    onClick={this.handleSubmit}
-                >{this.props.expense ? 'Edit Expense' : 'Add Expense'}</button>
-            </form>
+                        <p>
+                        <button
+                            className="btn btn-success button"
+                            type="button"
+                            onClick={this.handleSubmit}
+                        >{this.props.expense ? 'Edit Expense' : 'Add Expense'}</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
         );
     }
 }

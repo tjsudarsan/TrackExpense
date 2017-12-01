@@ -8,6 +8,7 @@ import NotFound from '../Components/NotFound';
 import LoginPage from '../Components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { Footer } from '../Components/Footer';
 
 export const history = createHistory();
 
@@ -21,6 +22,7 @@ const Home = () => (
                 <PrivateRoute path={process.env.PUBLIC_URL + '/editexpense/:id'} component={EditExpense} />
                 <Route component={NotFound} />
             </Switch>
+            <Footer/>
         </div>
     </Router>
 );

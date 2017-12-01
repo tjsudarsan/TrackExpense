@@ -12,9 +12,10 @@ export const logoutAuth = () => {
     }
 }
 
-export const login = (uid) => ({
+export const login = (uid,usrname) => ({
     type: 'LOGIN',
-    uid
+    uid,
+    usrname
 });
 
 export const logout = () => ({
